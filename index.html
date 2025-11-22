@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taemin Park - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero .tagline {
+            font-size: 1.4em;
+            opacity: 0.95;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            padding: 12px 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #475569;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(71, 85, 105, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .card-date {
+            background: #475569;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .card-org {
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .card ul {
+            margin-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(71, 85, 105, 0.2);
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(71, 85, 105, 0.4);
+        }
+
+        .fellowship-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left-color: #d97706;
+            position: relative;
+        }
+
+        .fellowship-card::after {
+            content: '🏆';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .activities-list {
+            list-style: none;
+        }
+
+        .activities-list li {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            border-left: 4px solid #64748b;
+            color: #475569;
+            transition: all 0.3s;
+        }
+
+        .activities-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .language-item {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .language-item:hover {
+            border-color: #475569;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(71, 85, 105, 0.2);
+        }
+
+        .language-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .language-level {
+            color: #64748b;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .content {
+                padding: 30px 25px;
+            }
+
+            .card-header {
+                flex-direction: column;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Taemin Park</h1>
+                <div class="tagline">Mechanical Engineering · AI/Robotics Research</div>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:ehmin1214@gm.gist.ac.kr">ehmin1214@gm.gist.ac.kr</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:ehmin@berkeley.edu">ehmin@berkeley.edu</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <a href="tel:+821091267238">(+82) 10-9126-7238</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🎓</div>
+                    <h2>Education</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Bachelor of Science in Mechanical Engineering</div>
+                            <div class="card-org">Gwangju Institute of Science and Technology (GIST)</div>
+                        </div>
+                        <div class="card-date">Mar 2021 - Present</div>
+                    </div>
+                    <ul>
+                        <li><strong>TGPA: 4.06/4.5</strong></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Exchange Student</div>
+                            <div class="card-org">UC Berkeley, United States</div>
+                        </div>
+                        <div class="card-date">Summer 2022, Spring 2026</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">💼</div>
+                    <h2>Work Experience</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Research Assistant</div>
+                            <div class="card-org">Machine Perception and Intelligence Lab, GIST</div>
+                        </div>
+                        <div class="card-date">Sep 2025 - Present</div>
+                    </div>
+                    <ul>
+                        <li>Structure (MW, SFW) SLAM with NASA Astrobee on the ISS</li>
+                        <li>Utilizing 3D-GS SLAM for space robotics applications</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Training Instructor</div>
+                            <div class="card-org">Air Force, Ministry of National Defense</div>
+                        </div>
+                        <div class="card-date">Aug 2023 - May 2025</div>
+                    </div>
+                    <ul>
+                        <li>Evaluated trainee progress with constructive feedback and tailored instruction</li>
+                        <li>Created interdisciplinary training exercises with fellow instructors</li>
+                        <li>Streamlined administrative processes for improved organizational efficiency</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Research Assistant</div>
+                            <div class="card-org">Data-Simulation and Optimization Lab, GIST</div>
+                        </div>
+                        <div class="card-date">Sep 2022 - Aug 2023</div>
+                    </div>
+                    <ul>
+                        <li>Conducted government-funded project on real-time CFD analysis in Unity</li>
+                        <li>Presented at Korean Society for Aeronautical and Space Sciences</li>
+                        <li>Collaborated with FLOW Lab (BYU) and KISTI</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🚀</div>
+                    <h2>Featured Projects</h2>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">NASA Astrobee SLAM on ISS</div>
+                            <div class="card-org">MPIL · Ongoing Research</div>
+                        </div>
+                        <div class="card-date">2025</div>
+                    </div>
+                    <ul>
+                        <li>Implementing 3D Gaussian Splatting SLAM for space robotics</li>
+                        <li>Working with NASA's Astrobee free-flying robot on International Space Station</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Real-time CFD in Unity</div>
+                            <div class="card-org">DDSDOL · Government-funded</div>
+                        </div>
+                        <div class="card-date">2023</div>
+                    </div>
+                    <ul>
+                        <li>Julia-based Vortex Particle Method for fluid simulation</li>
+                        <li>Collaboration with BYU FLOW Lab and KISTI</li>
+                        <li>Conference presentation at KSAS</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">AI Weather-Based Clothing Recommendation</div>
+                            <div class="card-org">Individual Project</div>
+                        </div>
+                        <div class="card-date">2023</div>
+                    </div>
+                    <ul>
+                        <li>Deep Learning with Mask R-CNN for clothing detection</li>
+                        <li>Containerized deployment using Docker</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">UAV Trajectory Optimization in Seoul</div>
+                            <div class="card-org">DDSDOL · 🏆 2nd Prize Winner</div>
+                        </div>
+                        <div class="card-date">2022</div>
+                    </div>
+                    <ul>
+                        <li>A* algorithm for no-fly-zone navigation</li>
+                        <li>2nd prize in poster presentation competition</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🏆</div>
+                    <h2>Fellowships & Scholarships</h2>
+                </div>
+                
+                <div class="card fellowship-card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">UC Berkeley Study Abroad Scholarship</div>
+                            <div class="card-org">Selected as 1 of 8 students · $26,000 award</div>
+                        </div>
+                        <div class="card-date">Jan 2026 - May 2026</div>
+                    </div>
+                </div>
+
+                <div class="card fellowship-card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Korea-U.S. Exchange Program</div>
+                            <div class="card-org">Advanced Fields Program · $9,000 award</div>
+                        </div>
+                        <div class="card-date">Jan 2026 - May 2026</div>
+                    </div>
+                </div>
+
+                <div class="card fellowship-card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">National Science & Engineering Scholarship</div>
+                            <div class="card-org">Full tuition for 8 semesters</div>
+                        </div>
+                        <div class="card-date">Mar 2021 - Feb 2027</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">🌐</div>
+                    <h2>Languages</h2>
+                </div>
+                <div class="language-grid">
+                    <div class="language-item">
+                        <div class="language-name">Korean</div>
+                        <div class="language-level">Native</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">English</div>
+                        <div class="language-level">TOEFL 115</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">💻</div>
+                    <h2>Technical Skills</h2>
+                </div>
+                <div class="skills-container">
+                    <div class="skill-badge">Julia</div>
+                    <div class="skill-badge">Python</div>
+                    <div class="skill-badge">C</div>
+                    <div class="skill-badge">CFD</div>
+                    <div class="skill-badge">SLAM</div>
+                    <div class="skill-badge">Deep Learning</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon">👥</div>
+                    <h2>Leadership & Activities</h2>
+                </div>
+                <ul class="activities-list">
+                    <li>Head of Communication Department, Student Council (Mar 2022 - Dec 2022)</li>
+                    <li>Mechanical Engineering Department Representative (Feb 2022 - Jun 2023)</li>
+                    <li>Mentor, Buddy Program for International Freshmen (Mar 2022 - Jun 2022)</li>
+                    <li>Freshman Camp Program Group Leader (Mar 2022)</li>
+                    <li>Active member: Swimming Club, Photography Club, English Speaking Club</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>,
